@@ -1,0 +1,22 @@
+{
+    "testId": "078ffb54-a0ad-46f9-bd71-d28cddd1455c",
+    "name": "Gen Palettte",
+    "version": "1.0.0",
+    "manifestVersion": 2,
+    "requirements": {
+        "apps": [
+            {
+                "name": "Express",
+                "apiVersion": 1
+            }
+        ]
+    },
+    "entryPoints": [
+        {
+            "type": "panel",
+            "id": "panel1",
+            "main": "index.html",
+            "documentSandbox": "code.js"
+        }
+    ]
+}
