@@ -1,3 +1,4 @@
+
 .container {
     margin: 24px;
     display: flex;
@@ -43,4 +44,78 @@
     width: 90vw;
     border: 1px solid black;
     border-radius: 8px;
+}
+
+/* Palette container */
+.palette-container {
+  padding: 10px 10px;
+  width: 100%;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* Palette title */
+.palette-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Colors grid */
+.colors-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+
+
+/* Color item */
+.color-item {
+ margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+/* Color square */
+.color-square {
+  width: 35px;
+  height: 35px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.color-square:hover {
+  transform: scale(1.05);
+}
+
+/* Tooltip */
+.color-tooltip {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  background: black;
+  color: white;
+  font-size: 12px;
+  border-radius: 6px;
+  padding: 4px 5px;
+  z-index: 10;
+  white-space: nowrap;
+}
+
+/* Color name and hex */
+.color-name {
+  margin-top: 5px;
+  font-size: 15px;
+  text-align: center;
+  font-weight: 500;
+}
+.color-hex {
+  font-size: 0.85rem;
+  color: #666;
 }

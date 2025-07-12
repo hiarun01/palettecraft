@@ -10,20 +10,25 @@ import {Theme} from "@swc-react/theme";
 import React, {useState} from "react";
 import "./App.css";
 import {generateResult} from "../../services/Gen-ai-config";
+import ColorPalette from "./ColorPalette";
+import {ResponseModify} from "../../services/Response-modifyer";
 
 const App = ({addOnUISdk, sandboxProxy}) => {
   const [userPrompt, setuserPrompt] = useState("");
   const [colorPalattes, setcolorPalattes] = useState([]);
   const [isLoading, setisLoading] = useState(false);
 
+  console.log(colorPalattes);
+
   const handleGenerate = async () => {
     try {
       setisLoading(true);
-      const res = await generateResult(userPrompt);
-
-      //   console.log("response", res);
-      setcolorPalattes(res);
-      setisLoading(false);
+      const response = await generateResult(userPrompt);
+      console.log("ress", response);
+      if (response) {
+        const parsed = ResponseModify(response);
+        setcolorPalattes(parsed);
+      }
     } catch (error) {
       console.log(`${error} while generating color palattes..`);
     } finally {
@@ -31,7 +36,7 @@ const App = ({addOnUISdk, sandboxProxy}) => {
     }
   };
 
-  console.log("by useState:", colorPalattes);
+  // console.log("by useState:", colorPalattes);
 
   return (
     // Please note that the below "<Theme>" component does not react to theme changes in Express.
@@ -59,30 +64,15 @@ const App = ({addOnUISdk, sandboxProxy}) => {
 
         {/* Generating result section */}
         <div className="result-container">
-          <ul>
-            {/* {Array.isArray(colorPalattes) && colorPalattes.length > 0 ? (
-              colorPalattes.map((palette, idx) => (
-                <div key={idx} className="mb-6">
-                  <h2 className="text-xl font-semibold mb-2">
-                    {palette.palette_name}
-                  </h2>
-                  <div className="flex gap-3">
-                    {palette.colors.map((color, i) => (
-                      <div key={i} className="text-center">
-                        <div
-                          className="w-16 h-16 rounded"
-                          style={{backgroundColor: color.hex}}
-                        />
-                        <p className="text-sm mt-1">{color.name}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))
-            ) : (
-              <p>Start by generating a palette ✨</p>
-            )} */}
-          </ul>
+          {!isLoading &&
+            colorPalattes.map((palette, index) => (
+              <div key={index} className="mb-8">
+                <ColorPalette
+                  paletteName={palette.palette_name}
+                  colors={palette.colors}
+                />
+              </div>
+            ))}
         </div>
       </div>
     </Theme>
