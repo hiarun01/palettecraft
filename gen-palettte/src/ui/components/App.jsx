@@ -12,30 +12,22 @@ import "./App.css";
 import {generateResult} from "../../services/Gen-ai-config";
 import ColorPalette from "./ColorPalette";
 import {ResponseModify} from "../../services/Response-modifyer";
+import {useColorGenerator} from "../../hook/useFetch";
 
 const App = ({addOnUISdk, sandboxProxy}) => {
-  const [userPrompt, setuserPrompt] = useState("");
-  const [colorPalattes, setcolorPalattes] = useState([]);
-  const [isLoading, setisLoading] = useState(false);
+  const [userPrompt, setUserPrompt] = useState("");
+  const {isLoading, colorPalettes, error, generateColors} = useColorGenerator(
+    generateResult,
+    ResponseModify
+  );
 
-  console.log(colorPalattes);
-
-  const handleGenerate = async () => {
+  const handleClick = () => {
     try {
-      setisLoading(true);
-      const response = await generateResult(userPrompt);
-      console.log("ress", response);
-      if (response) {
-        const parsed = ResponseModify(response);
-        setcolorPalattes(parsed);
-      }
+      generateColors(userPrompt);
     } catch (error) {
-      console.log(`${error} while generating color palattes..`);
-    } finally {
-      setisLoading(false);
+      rr
     }
   };
-
   // console.log("by useState:", colorPalattes);
 
   return (
@@ -48,7 +40,7 @@ const App = ({addOnUISdk, sandboxProxy}) => {
           <div>
             <textarea
               value={userPrompt}
-              onChange={(e) => setuserPrompt(e.target.value)}
+              onChange={(e) => setUserPrompt(e.target.value)}
               type="text"
               rows={5}
               className="input"
@@ -56,7 +48,7 @@ const App = ({addOnUISdk, sandboxProxy}) => {
             />
           </div>
           <div>
-            <button onClick={handleGenerate} className="btn">
+            <button onClick={handleClick} className="btn">
               {isLoading ? "Generating..." : "Generate"}
             </button>
           </div>
@@ -65,7 +57,7 @@ const App = ({addOnUISdk, sandboxProxy}) => {
         {/* Generating result section */}
         <div className="result-container">
           {!isLoading &&
-            colorPalattes.map((palette, index) => (
+            colorPalettes.map((palette, index) => (
               <div key={index} className="mb-8">
                 <ColorPalette
                   paletteName={palette.palette_name}
