@@ -9,10 +9,10 @@ import "@spectrum-web-components/theme/express/theme-light.js";
 import {Theme} from "@swc-react/theme";
 import React, {useState} from "react";
 import "./App.css";
-import {generateResult} from "../../services/Gen-ai-config";
-import ColorPalette from "./ColorPalette";
-import {ResponseModify} from "../../services/Response-modifyer";
-import {useColorGenerator} from "../../hook/useFetch";
+import {generateResult} from "../services/Gen-ai-config";
+import ColorPalette from "./components/ColorPalette";
+import {ResponseModify} from "../services/Response-modifyer";
+import {useColorGenerator} from "../hook/useFetch";
 
 const App = ({addOnUISdk, sandboxProxy}) => {
   const [userPrompt, setUserPrompt] = useState("");
@@ -22,13 +22,8 @@ const App = ({addOnUISdk, sandboxProxy}) => {
   );
 
   const handleClick = () => {
-    try {
-      generateColors(userPrompt);
-    } catch (error) {
-      rr
-    }
+    generateColors(userPrompt);
   };
-  // console.log("by useState:", colorPalattes);
 
   return (
     // Please note that the below "<Theme>" component does not react to theme changes in Express.
@@ -55,10 +50,17 @@ const App = ({addOnUISdk, sandboxProxy}) => {
         </div>
 
         {/* Generating result section */}
-        <div className="result-container">
+        <div
+          className="result-container"
+          style={{
+            overflow: "scroll",
+            scrollbarWidth: "none" /* Firefox */,
+            msOverflowStyle: "none" /* IE and Edge */,
+          }}
+        >
           {!isLoading &&
             colorPalettes.map((palette, index) => (
-              <div key={index} className="mb-8">
+              <div key={index} className="palette-container">
                 <ColorPalette
                   paletteName={palette.palette_name}
                   colors={palette.colors}
