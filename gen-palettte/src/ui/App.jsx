@@ -16,7 +16,7 @@ import {useColorGenerator} from "../hook/useFetch";
 
 const App = ({addOnUISdk, sandboxProxy}) => {
   const [userPrompt, setUserPrompt] = useState("");
-  const {isLoading, colorPalettes, error, generateColors} = useColorGenerator(
+  const {isLoading, colorPalettes, generateColors} = useColorGenerator(
     generateResult,
     ResponseModify
   );
@@ -24,6 +24,11 @@ const App = ({addOnUISdk, sandboxProxy}) => {
   const handleClick = () => {
     generateColors(userPrompt);
   };
+
+  addOnUISdk.app.ui.setTitle("Color Palette Generator");
+  addOnUISdk.app.ui.setDescription(
+    "Generate beautiful color palettes based on your mood, style, or theme."
+  );
 
   return (
     // Please note that the below "<Theme>" component does not react to theme changes in Express.
@@ -64,6 +69,7 @@ const App = ({addOnUISdk, sandboxProxy}) => {
                 <ColorPalette
                   paletteName={palette.palette_name}
                   colors={palette.colors}
+                  addOnUISdk={addOnUISdk}
                 />
               </div>
             ))}

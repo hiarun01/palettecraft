@@ -5,6 +5,6 @@ export function ResponseModify(aiOutput) {
   try {
     return JSON.parse(jsonString);
   } catch (err) {
-    throw new Error("Invalid JSON format from AI response");
+    throw new Error(err, "Invalid JSON format from AI response");
   }
 }

@@ -8,7 +8,6 @@ export function useColorGenerator(generateResult, ResponseModify) {
     try {
       setIsLoading(true);
       const response = await generateResult(userPrompt);
-      console.log("ress", response);
       if (response) {
         const parsed = ResponseModify(response);
         setColorPalettes(parsed);
