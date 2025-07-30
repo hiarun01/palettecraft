@@ -21,9 +21,6 @@ Format your response as a JSON array like this:
       { "name": "Color 4", "hex": "#XXXXXX" },
       { "name": "Color 5", "hex": "#XXXXXX" },
       { "name": "Color 6", "hex": "#XXXXXX" },
-      { "name": "Color 7", "hex": "#XXXXXX" },
-      { "name": "Color 8", "hex": "#XXXXXX" },
-      { "name": "Color 9", "hex": "#XXXXXX" },
     ]
   }
 ]

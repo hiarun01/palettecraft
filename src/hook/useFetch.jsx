@@ -6,6 +6,7 @@ export function useColorGenerator(generateResult, ResponseModify) {
 
   const generateColors = async (userPrompt) => {
     try {
+      if (!userPrompt) return;
       setIsLoading(true);
       const response = await generateResult(userPrompt);
       if (response) {

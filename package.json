@@ -1,7 +1,7 @@
 {
-    "name": "PaletteCraft",
-    "version": "1.0.0",
-    "description": "Adobe Creative Cloud Web Add-on.",
+    "name": "palette-craft",
+    "version": "1.1.0",
+    "description": "Palette Craft - A Color Palette generator..",
     "scripts": {
         "clean": "ccweb-add-on-scripts clean",
         "build": "ccweb-add-on-scripts build --use webpack",
@@ -15,10 +15,10 @@
         "panel"
     ],
     "dependencies": {
-        "@google/genai": "^1.8.0",
+        "@google/genai": "^1.10.0",
         "@swc-react/button": "1.0.3",
         "@swc-react/theme": "1.0.3",
-        "axios": "^1.10.0",
+        "build": "^0.1.4",
         "react": "18.2.0",
         "react-dom": "18.2.0"
     },

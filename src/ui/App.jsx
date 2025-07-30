@@ -10,9 +10,10 @@ import {Theme} from "@swc-react/theme";
 import React, {useState} from "react";
 import "./App.css";
 import {generateResult} from "../services/Gen-ai-config";
-import ColorPalette from "./components/ColorPalette";
+import ColorPalette from "./ColorPalette";
 import {ResponseModify} from "../services/Response-modifyer";
 import {useColorGenerator} from "../hook/useFetch";
+import Loader from "./Loader";
 
 const App = ({addOnUISdk, sandboxProxy}) => {
   const [userPrompt, setUserPrompt] = useState("");
@@ -21,20 +22,36 @@ const App = ({addOnUISdk, sandboxProxy}) => {
     ResponseModify
   );
 
-  const handleClick = () => {
-    generateColors(userPrompt);
-  };
-
-  addOnUISdk.app.ui.setTitle("Color Palette Generator");
-  addOnUISdk.app.ui.setDescription(
-    "Generate beautiful color palettes based on your mood, style, or theme."
-  );
-
   return (
     // Please note that the below "<Theme>" component does not react to theme changes in Express.
     // You may use "addOnUISdk.app.ui.theme" to get the current theme and react accordingly.
     <Theme system="express" scale="medium" color="light">
       <div className="container">
+        {/* hero section */}
+        <div
+          style={{
+            textAlign: "center",
+            marginBottom: "1rem",
+            fontFamily: "Arial, sans-serif",
+          }}
+        >
+          <h1 style={{fontSize: "20px", fontWeight: "bold"}}>
+            <span
+              style={{
+                color: "#ff1a1aff",
+                fontSize: "24px",
+                fontWeight: "extra-bold",
+              }}
+            >
+              PaletteCraft{" "}
+            </span>{" "}
+            - Paint Your Ideas with Just Words
+          </h1>
+          <p style={{fontSize: "12px", color: "#666"}}>
+            Generate beautiful color palettes with the power of AI.
+          </p>
+        </div>
+
         {/* user input section */}
         <div className="user-input-section">
           <div>
@@ -48,8 +65,21 @@ const App = ({addOnUISdk, sandboxProxy}) => {
             />
           </div>
           <div>
-            <button onClick={handleClick} className="btn">
-              {isLoading ? "Generating..." : "Generate"}
+            <button onClick={() => generateColors(userPrompt)} className="btn">
+              {isLoading ? (
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Loader />
+                  <span style={{padding: "0 10px"}}>Generating</span>
+                </div>
+              ) : (
+                <span style={{padding: "0 10px"}}>Generate</span>
+              )}
             </button>
           </div>
         </div>
@@ -69,7 +99,6 @@ const App = ({addOnUISdk, sandboxProxy}) => {
                 <ColorPalette
                   paletteName={palette.palette_name}
                   colors={palette.colors}
-                  addOnUISdk={addOnUISdk}
                 />
               </div>
             ))}
