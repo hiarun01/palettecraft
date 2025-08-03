@@ -3,6 +3,7 @@ import {useState} from "react";
 export function useColorGenerator(generateResult, ResponseModify) {
   const [isLoading, setIsLoading] = useState(false);
   const [colorPalettes, setColorPalettes] = useState([]);
+  const [error, setError] = useState("");
 
   const generateColors = async (userPrompt) => {
     try {
@@ -14,11 +15,12 @@ export function useColorGenerator(generateResult, ResponseModify) {
         setColorPalettes(parsed);
       }
     } catch (error) {
+      setError(error);
       console.log(`${error} while generating color palettes...`);
     } finally {
       setIsLoading(false);
     }
   };
 
-  return {isLoading, colorPalettes, generateColors};
+  return {isLoading, colorPalettes, setColorPalettes, generateColors, error};
 }

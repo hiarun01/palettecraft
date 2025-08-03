@@ -1,13 +1,13 @@
 import {GoogleGenAI} from "@google/genai";
 
-const ai = new GoogleGenAI({apiKey: "AIzaSyC57mAtgYpntMfNb9l3ZErCKyP_c1Dkrq4"});
+const ai = new GoogleGenAI({apiKey: "AIzaSyBMGoxZalsSpbT53NSF0bRnKQosY65rHOc"});
 
 export const generateResult = async (userPrompt) => {
   const content = `
-You are a professional color palette generator AI. Based on the given user prompt, generate 10 visually distinct color palettes that match the theme/mood.
+You are a professional color palette generator AI. Based on the given user prompt, generate 6 visually distinct color palettes that match the theme/mood.
 The response should include:
 - A suitable palette name
-- A list of 10 visually distinct colors
+- A list of 6 visually distinct colors
 - Each color should have a name and a hex code
 
 Format your response as a JSON array like this:

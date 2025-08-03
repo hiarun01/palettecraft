@@ -17,10 +17,8 @@ import Loader from "./Loader";
 
 const App = ({addOnUISdk, sandboxProxy}) => {
   const [userPrompt, setUserPrompt] = useState("");
-  const {isLoading, colorPalettes, generateColors} = useColorGenerator(
-    generateResult,
-    ResponseModify
-  );
+  const {isLoading, colorPalettes, setColorPalettes, generateColors, error} =
+    useColorGenerator(generateResult, ResponseModify);
 
   return (
     // Please note that the below "<Theme>" component does not react to theme changes in Express.
@@ -63,6 +61,21 @@ const App = ({addOnUISdk, sandboxProxy}) => {
               className="input"
               placeholder="tell us the mood, style, or theme you'd like your color palette to capture."
             />
+
+            {isLoading && (
+              <span
+                style={{
+                  color: "#ff1a1aff",
+                  fontSize: "12px",
+                  fontWeight: "bold",
+                  margin: "auto",
+                  display: "block",
+                  textAlign: "center",
+                }}
+              >
+                you can't cancel the generation once started.
+              </span>
+            )}
           </div>
           <div>
             <button onClick={() => generateColors(userPrompt)} className="btn">
@@ -86,7 +99,7 @@ const App = ({addOnUISdk, sandboxProxy}) => {
 
         {/* Generating result section */}
         <div
-          className="result-container"
+          className="palattes-container"
           style={{
             overflow: "scroll",
             scrollbarWidth: "none" /* Firefox */,
