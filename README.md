@@ -2,8 +2,6 @@
 
 PaletteCraft is an Adobe Express add-on that lets you create and use beautiful color palettes directly in your designs.
 
-## Features
-- Generate palettes from images
 ## Usage
 1. Open your project in Adobe Express.
 2. Launch **PaletteCraft** from the Add-ons panel.
