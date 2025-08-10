@@ -3,7 +3,8 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Official-Adobe%20Express%20Add--on-%23FF0000?style=for-the-badge&logo=adobe&logoColor=white" alt="Official Adobe Express Add-on Badge" />
 </p>
-PaletteCraft is an official Adobe Express add-on that helps you create, explore, and apply beautiful, human-inspired color palettes** directly in your designs.
+
+PaletteCraft is an AI-powered color palette generator built for Adobe Express. It helps users quickly generate beautiful, ready-to-use color palettes based on simple text prompts such as moods, styles, or themes.
 
 ---
 
