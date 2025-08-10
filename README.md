@@ -1,17 +1,13 @@
-## About
+# PaletteCraft — Adobe Express Add-on
 
-This project has been created with _@adobe/create-ccweb-add-on_. As an example, this Add-on demonstrates how to get started with Add-on development using React and JavaScript with Document Sandbox Runtime.
+PaletteCraft is an Adobe Express add-on that lets you create and use beautiful color palettes directly in your designs.
 
-## Tools
+## Features
+- Generate palettes from images
+## Usage
+1. Open your project in Adobe Express.
+2. Launch **PaletteCraft** from the Add-ons panel.
+3. Describe a theme, mood, or style PaletteCraft will instantly generate a color palette that feels human, emotional, and perfectly matched to your vision
 
--   HTML
--   CSS
--   React
--   Gen AI
--   JavaScript
-
-## Setup
-
-1. To install the dependencies, run `npm install`.
-2. To build the application, run `npm run build`.
-3. To start the application, run `npm run start`.
+## Support
+If you have any issues or feedback, please reach out via the Add-on page on Adobe Express.
